@@ -17,6 +17,9 @@
         <!-- Scripts -->
         <script src="https://api-maps.yandex.ru/2.1/?apikey={{ env('YANDEX_API_KEY') }}&lang=ru_RU" type="text/javascript">
         </script>
+        @if (request()->route()->named(['orders.index', 'orders.create', 'orders.edit']))
+            @vite(['resources/js/orders.js'])
+        @endif
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">

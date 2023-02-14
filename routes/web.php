@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -21,9 +22,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('orders', OrderController::class);
     Route::resource('products', ProductController::class);
@@ -31,6 +30,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/tokens/create', function (\Illuminate\Http\Request $request) {
+        $token = $request->user()->createToken($request->token_name);
+        return redirect()
+            ->to(route('profile.edit')."#generate-token-section")
+            ->with('status', 'profile-updated')
+            ->with('token', $token->plainTextToken);
+    })->name('tokens.create');
 });
 
 require __DIR__.'/auth.php';
