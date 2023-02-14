@@ -35,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         $token = $request->user()->createToken($request->token_name);
         return redirect()
             ->to(route('profile.edit')."#generate-token-section")
-            ->with('status', 'profile-updated')
+            ->with('status', 'token-updated')
             ->with('token', $token->plainTextToken);
     })->name('tokens.create');
 });
