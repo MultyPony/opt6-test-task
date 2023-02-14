@@ -1,0 +1,26 @@
+{
+  "_js.cookie-8e175754.js": {
+    "file": "assets/js.cookie-8e175754.js"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-3094bc5f.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-320f4695.js",
+    "imports": [
+      "_js.cookie-8e175754.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/orders.js": {
+    "file": "assets/orders-72821183.js",
+    "imports": [
+      "_js.cookie-8e175754.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/orders.js"
+  }
+}
